@@ -10,6 +10,10 @@ const menuItemSchema = new mongoose.Schema({
     ref: "Restaurant",
     required: true,
   },
+  itemImage: {
+    type: String,
+    required: true,
+  },
 });
 
 const MenuItem = mongoose.model("MenuItem", menuItemSchema);

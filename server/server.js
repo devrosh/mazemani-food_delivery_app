@@ -4,14 +4,15 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const dbConnect = require("./config/db.js");
 const userRoutes = require("./routes/userRoutes.js");
-const multer = require("multer");
+const restaurantRoutes = require("./routes/restaurantRoutes.js");
+const menuItemRoutes = require("./routes/menuItemRoutes.js");
 
 const app = express();
 dotenv.config();
 dbConnect();
 const port = process.env.PORT;
 
-//Middlewares
+//-----Middlewares---------
 app.use(express.json({ limit: "16mb" }));
 app.use(express.urlencoded({ extended: true }, { limit: "10mb" }));
 app.use(
@@ -29,9 +30,12 @@ app.use((req, res, next) => {
 app.use(express.static("public"));
 app.use(cookieParser());
 
-//Routes
+//------Routes------
 app.use("/api/user", userRoutes);
-//Server initialisation
+app.use("/api/restaurant", restaurantRoutes);
+app.use("/api/menu-item", menuItemRoutes);
+
+//-----Server initialisation
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
