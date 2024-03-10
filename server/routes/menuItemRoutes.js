@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const {
-  authMiddleware,
-  isRestaurantOwner,
-} = require("../middlewares/authMiddleware");
+const { authMiddleware } = require("../middlewares/authMiddleware");
 const { upload } = require("../middlewares/multerMiddleware");
-const { createMenuItem } = require("../controllers/menuItemController");
+const {
+  createMenuItem,
+  updateMenuItem,
+  deleteMenuItem,
+  getAllMenuItems,
+} = require("../controllers/menuItemController");
 
 router.post(
   "/create/:restaurantId",
@@ -13,5 +15,13 @@ router.post(
   upload.single("itemImage"),
   createMenuItem
 );
+router.put(
+  "/update/:restaurantId/:itemId",
+  authMiddleware,
+  upload.single("itemImage"),
+  updateMenuItem
+);
+router.get("/", getAllMenuItems);
+router.delete("/delete/:restaurantId/:itemId", authMiddleware, deleteMenuItem);
 
 module.exports = router;

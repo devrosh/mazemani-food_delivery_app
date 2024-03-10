@@ -6,8 +6,8 @@ const orderItemSchema = new mongoose.Schema({
     ref: "MenuItem",
     required: true,
   },
-  quantity: { type: Number, required: true },
-  subTotal: { type: Number, required: true },
+  quantity: { type: Number },
+  subTotal: { type: Number },
 });
 
 const OrderItem = mongoose.model("OrderItem", orderItemSchema);

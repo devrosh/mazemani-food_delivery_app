@@ -1,18 +1,16 @@
 const mongoose = require("mongoose");
 
 const menuItemSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String },
   description: { type: String },
-  price: { type: Number, required: true },
+  price: { type: Number },
   category: { type: String },
   restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Restaurant",
-    required: true,
   },
   itemImage: {
     type: String,
-    required: true,
   },
 });
 
