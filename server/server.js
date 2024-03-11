@@ -6,9 +6,9 @@ const dbConnect = require("./config/db.js");
 const userRoutes = require("./routes/userRoutes.js");
 const restaurantRoutes = require("./routes/restaurantRoutes.js");
 const menuItemRoutes = require("./routes/menuItemRoutes.js");
-const orderRoutes = require("./routes/orderRoutes.js")
+const orderRoutes = require("./routes/orderRoutes.js");
 const orderItemRoutes = require("./routes/orderItemRoutes.js");
-
+const ratingRoutes = require("./routes/ratingRoutes.js");
 const app = express();
 dotenv.config();
 dbConnect();
@@ -36,8 +36,9 @@ app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/restaurant", restaurantRoutes);
 app.use("/api/menu-item", menuItemRoutes);
-app.use("/api/orders",orderRoutes)
+app.use("/api/orders", orderRoutes);
 app.use("/api/order-item", orderItemRoutes);
+app.use("/api/ratings", ratingRoutes);
 
 //-----Server initialisation
 app.listen(port, () => {

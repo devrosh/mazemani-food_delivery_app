@@ -5,14 +5,14 @@ const { authMiddleware } = require("../middlewares/authMiddleware");
 const {
   createOrder,
   getAllOrders,
-  getOrderById,
-  updateOrderStatus,
+  getSingleOrder,
+  updateOrder,
   deleteOrder,
 } = require("../controllers/orderController");
-router.post("/create/:resturantId", authMiddleware, createOrder);
+router.post("/create", authMiddleware, createOrder);
 router.get("/", authMiddleware, getAllOrders);
-router.get("/:orderId", authMiddleware, getOrderById);
-router.put("/:orderId/status", authMiddleware, updateOrderStatus);
+router.get("/:orderId", authMiddleware, getSingleOrder);
+router.put("/:orderId", authMiddleware, updateOrder);
 router.delete("/delete/:orderId", authMiddleware, deleteOrder);
 
 module.exports = router;

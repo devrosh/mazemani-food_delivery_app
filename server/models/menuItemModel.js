@@ -5,6 +5,10 @@ const menuItemSchema = new mongoose.Schema({
   description: { type: String },
   price: { type: Number },
   category: { type: String },
+  discountPercentage: {
+    type: Number,
+    default: 0,
+  },
   restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Restaurant",

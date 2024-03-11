@@ -22,7 +22,7 @@ const createMenuItem = asyncHandler(async (req, res) => {
         .json({ message: "You are not the owner of this restaurant" });
     }
 
-    const { name, description, price, category } = req.body;
+    const { name, description, price, category, discountPercentage } = req.body;
 
     if (!name || !description || !price || !category) {
       return res.status(400).json({
@@ -50,6 +50,7 @@ const createMenuItem = asyncHandler(async (req, res) => {
       description,
       price,
       category,
+      discountPercentage,
       restaurant: restaurantId, // Set the reference to the restaurant
       itemImage: itemImage.url,
     });
@@ -96,7 +97,7 @@ const updateMenuItem = asyncHandler(async (req, res) => {
     }
 
     // Update the menu item properties
-    const { name, description, price, category } = req.body;
+    const { name, description, price, category, discountPercentage } = req.body;
 
     // Check if a new image file is provided
     let itemImage;
@@ -120,6 +121,7 @@ const updateMenuItem = asyncHandler(async (req, res) => {
         description,
         price,
         category,
+        discountPercentage,
         // Assign the new image URL only if an image is provided
         ...(itemImage && { itemImage: itemImage.url }),
       },
