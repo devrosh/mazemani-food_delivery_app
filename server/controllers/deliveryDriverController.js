@@ -136,6 +136,52 @@ const assignOrderToDriver = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Error assigning order to the driver" });
   }
 });
+//UPADTE DRIVER LOCATION
+const updateDriverLocation = asyncHandler(async (req, res) => {
+  try {
+    const { driverId } = req.params;
+    const { longitude, latitude, latitudeDelta, longitudeDelta } = req.body;
+
+    // Update the driver's location in the database
+    await DeliveryDriver.findByIdAndUpdate(driverId, {
+      $set: {
+        currentLocation: { longitude, latitude, latitudeDelta, longitudeDelta },
+      },
+    });
+
+    res.status(200).json({ message: "Location updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error updating location" });
+  }
+});
+
+//--- GET ORDER TRACKING INFO---
+const orderTrackingInfo = asyncHandler(async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    // Extract relevant information for order tracking (including driver's location)
+    const orderTrackingInfo = {
+      orderId: order._id,
+      status: order.status,
+      deliveryDriver: order.deliveryDriver,
+    };
+
+    res.status(200).json(orderTrackingInfo);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error fetching order tracking information" });
+  }
+});
 
 module.exports = {
   addDeliverydriver,
@@ -143,4 +189,6 @@ module.exports = {
   getDriver,
   assignOrderToDriver,
   updateDriver,
+  updateDriverLocation,
+  orderTrackingInfo,
 };

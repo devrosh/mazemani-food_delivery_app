@@ -11,12 +11,16 @@ const {
   getDriver,
   assignOrderToDriver,
   updateDriver,
+  updateDriverLocation,
+  orderTrackingInfo,
 } = require("../controllers/deliveryDriverController");
 
 router.post("/add", authMiddleware, addDeliverydriver);
+router.post("/update-location/:driverId", authMiddleware, updateDriverLocation);
 router.get("/", getAllDrivers);
 router.get("/:driverId", getDriver);
-router.put("/:driverId",authMiddleware,isDeliveryDriver,updateDriver);
+router.get("/order-tracking/:orderId", authMiddleware, orderTrackingInfo);
+router.put("/:driverId", authMiddleware, isDeliveryDriver, updateDriver);
 router.put("/assign-order", authMiddleware, assignOrderToDriver);
 
 module.exports = router;
