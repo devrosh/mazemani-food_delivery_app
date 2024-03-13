@@ -54,7 +54,6 @@ const createOrderItem = asyncHandler(async (req, res) => {
 
     await order.save();
     await newOrderItem.save();
-
     res.status(201).json(newOrderItem);
   } catch (error) {
     console.log(error);

@@ -9,6 +9,7 @@ const menuItemRoutes = require("./routes/menuItemRoutes.js");
 const orderRoutes = require("./routes/orderRoutes.js");
 const orderItemRoutes = require("./routes/orderItemRoutes.js");
 const ratingRoutes = require("./routes/ratingRoutes.js");
+const deliveryDriverRoutes = require("./routes/deliveryDriverRoutes.js");
 const app = express();
 dotenv.config();
 dbConnect();
@@ -39,6 +40,7 @@ app.use("/api/menu-item", menuItemRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/order-item", orderItemRoutes);
 app.use("/api/ratings", ratingRoutes);
+app.use("/api/delivery-driver", deliveryDriverRoutes);
 
 //-----Server initialisation
 app.listen(port, () => {

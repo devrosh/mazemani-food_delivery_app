@@ -10,7 +10,7 @@ const generateRefreshToken = require("../config/refreshToken.js");
 //-----------------------------------------------------------
 const registerUser = asyncHandler(async (req, res) => {
   try {
-    const { firstName, lastName, email, phoneNumber, password, address } =
+    const { firstName, lastName, email, phoneNumber, password, address, role } =
       req.body;
     const user = await User.findOne({ email: email });
 
@@ -43,6 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
         phoneNumber: phoneNumber,
         address: address,
         profileImage: profileImage.url,
+        role,
       });
       res.status(200).json(newUser);
     }

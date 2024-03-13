@@ -1,5 +1,6 @@
 const Order = require("../models/orderModel");
 const OrderItem = require("../models/orderItemModel");
+const Restaurant = require("../models/restaurantModel");
 const asyncHandler = require("../utils/asyncHandler");
 
 //CREATE ORDER

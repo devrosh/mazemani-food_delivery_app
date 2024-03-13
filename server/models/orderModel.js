@@ -13,7 +13,14 @@ const orderSchema = new mongoose.Schema({
   totalAmountAfterDiscount: { type: Number },
   status: {
     type: String,
-    enum: ["Pending", "Confirmed", "In Progress", "Delivered", "Cancelled"],
+    enum: [
+      "Pending",
+      "Confirmed",
+      "Assigned",
+      "In Progress",
+      "Delivered",
+      "Cancelled",
+    ],
   },
   createdAt: { type: Date, default: Date.now },
 });
