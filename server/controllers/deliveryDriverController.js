@@ -76,6 +76,7 @@ const getAllDrivers = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Error fetching drivers" });
   }
 });
+
 //--GET A DRIVER----
 const getDriver = asyncHandler(async (req, res) => {
   const { driverId } = req.params;
@@ -136,6 +137,7 @@ const assignOrderToDriver = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Error assigning order to the driver" });
   }
 });
+
 //UPADTE DRIVER LOCATION
 const updateDriverLocation = asyncHandler(async (req, res) => {
   try {
